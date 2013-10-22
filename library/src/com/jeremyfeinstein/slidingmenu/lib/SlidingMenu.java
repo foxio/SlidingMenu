@@ -69,8 +69,6 @@ public class SlidingMenu extends RelativeLayout {
 	private CustomViewBehind mViewBehind;
 
 	private OnOpenListener mOpenListener;
-	
-	private OnOpenListener mSecondaryOpenListner;
 
 	private OnCloseListener mCloseListener;
 
@@ -214,7 +212,6 @@ public class SlidingMenu extends RelativeLayout {
 		mViewAbove.setOnPageChangeListener(new OnPageChangeListener() {
 			public static final int POSITION_OPEN = 0;
 			public static final int POSITION_CLOSE = 1;
-			public static final int POSITION_SECONDARY_OPEN = 2;
 
 			public void onPageScrolled(int position, float positionOffset,
 					int positionOffsetPixels) { }
@@ -224,8 +221,6 @@ public class SlidingMenu extends RelativeLayout {
 					mOpenListener.onOpen();
 				} else if (position == POSITION_CLOSE && mCloseListener != null) {
 					mCloseListener.onClose();
-				} else if (position == POSITION_SECONDARY_OPEN && mSecondaryOpenListner != null ) {
-					mSecondaryOpenListner.onOpen();
 				}
 			}
 		});
@@ -883,19 +878,8 @@ public class SlidingMenu extends RelativeLayout {
 		mOpenListener = listener;
 	}
 
-	
 	/**
-	 * Sets the OnOpenListner for secondary menu  {@link OnOpenListener#onOpen() OnOpenListener.onOpen()} will be called when the secondary SlidingMenu is opened
-	 * 
-	 * @param listener the new OnOpenListener
-	 */
-	
-	public void setSecondaryOnOpenListner(OnOpenListener listener) {
-		mSecondaryOpenListner = listener;
-	}
-	
-	/**
-	 * Sets the OnCloseListener. {@link OnCloseListener#onClose() OnCloseListener.onClose()} will be called when any one of the SlidingMenu is closed
+	 * Sets the OnCloseListener. {@link OnCloseListener#onClose() OnCloseListener.onClose()} will be called when the SlidingMenu is closed
 	 *
 	 * @param listener the new setOnCloseListener
 	 */
